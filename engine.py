@@ -22,7 +22,7 @@ def get_phrases_from_input(input_text : str) -> list:
     return list(set(phrases))
 
 
-def compute_similarity(phrases, terms, term_embeds):
+def compute_similarity(phrases, terms, term_embeds, threshold):
     
 
     
@@ -32,7 +32,7 @@ def compute_similarity(phrases, terms, term_embeds):
         similarities = np.array([cosine_similarity(phrase_embedding, term_embedding)[0][0] for term_embedding in term_embeds])
         idx = np.argmax(similarities)
         similarity = similarities[idx]
-        if similarity > 0.4:
+        if similarity > threshold:
             results.append((phrase, terms[idx], similarity))
     return results
 
@@ -43,11 +43,11 @@ def generate_suggestions(results):
     return df
 
 def process_text(sample_text, threshold: float = 0.45):
-    texts = [text.strip() for text in sample_text.split('.') if len(text.strip()) > 0]
+    
     terms = load_terms()
     term_embeds = [model.encode(term) for term in terms]
-    doc = spacy_model(texts)
+    doc = spacy_model(sample_text)
     phrases_from_input = get_phrases_from_input(doc)
-    results = compute_similarity(phrases_from_input, terms, term_embeds)
+    results = compute_similarity(phrases_from_input, terms, term_embeds, threshold)
     return generate_suggestions(results)
 
