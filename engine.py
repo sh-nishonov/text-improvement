@@ -28,8 +28,8 @@ def compute_similarity(phrases, terms, term_embeds, threshold):
     
     results = []
     for phrase in phrases:
-        phrase_embedding = model.encode(phrase)
-        similarities = np.array([cosine_similarity(phrase_embedding, term_embedding)[0][0] for term_embedding in term_embeds])
+        phrase_embedding = model.encode(phrase).reshape(1, -1)
+        similarities = np.array([cosine_similarity(phrase_embedding, term_embedding.reshape(1, -1))[0][0] for term_embedding in term_embeds])
         idx = np.argmax(similarities)
         similarity = similarities[idx]
         if similarity > threshold:
