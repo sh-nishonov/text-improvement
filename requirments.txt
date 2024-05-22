@@ -1,0 +1,5 @@
+numpy == 1.26.4
+pandas == 2.2.2
+sentence-transformers == 2.7.0
+spacy == 3.7.4
+scikit-learn == 1.5.0
