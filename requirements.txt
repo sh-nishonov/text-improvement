@@ -2,5 +2,5 @@ numpy == 1.26.4
 pandas == 2.2.2
 sentence-transformers == 2.7.0
 spacy == 3.7.4
-https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.7.1
+https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.7.1/en_core_web_lg-3.7.1.tar.gz
 scikit-learn == 1.5.0
