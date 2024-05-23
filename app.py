@@ -1,5 +1,6 @@
 import streamlit as st
 from sentence_transformers import SentenceTransformer
+import spacy
 from engine import process_text
 
 

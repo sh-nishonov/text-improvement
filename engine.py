@@ -1,5 +1,3 @@
-
-import spacy
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from spacy.lang.en import stop_words
