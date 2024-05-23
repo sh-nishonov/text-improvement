@@ -6,11 +6,11 @@ from engine import process_text
 
 @st.cache_resource
 def load_model():
-    model = SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
+    return SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
 
 @st.cache_resource
 def load_spacy_model():
-    spacy_model = spacy.load("en_core_web_lg")
+    return spacy.load("en_core_web_lg")
 
 
 
