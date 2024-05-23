@@ -1,4 +1,4 @@
-from sentence_transformers import SentenceTransformer
+
 import spacy
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -8,8 +8,6 @@ import pandas as pd
 from utils import load_terms
 
 
-model = SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
-spacy_model = spacy.load("en_core_web_lg")
 
 
 def get_phrases_from_input(input_text : str) -> list:
@@ -22,10 +20,7 @@ def get_phrases_from_input(input_text : str) -> list:
     return list(set(phrases))
 
 
-def compute_similarity(phrases, terms, term_embeds, threshold):
-    
-
-    
+def compute_similarity(model, phrases, terms, term_embeds, threshold):
     results = []
     for phrase in phrases:
         phrase_embedding = model.encode(phrase).reshape(1, -1)
@@ -42,12 +37,12 @@ def generate_suggestions(results):
                         "Similarity Score": [i[2] for i in results]})
     return df
 
-def process_text(sample_text, threshold: float = 0.45):
+def process_text(sample_text, threshold: float = 0.45, model, spacy_model):
     
     terms = load_terms()
     term_embeds = [model.encode(term) for term in terms]
     doc = spacy_model(sample_text)
     phrases_from_input = get_phrases_from_input(doc)
-    results = compute_similarity(phrases_from_input, terms, term_embeds, threshold)
+    results = compute_similarity(model, phrases_from_input, terms, term_embeds, threshold)
     return generate_suggestions(results)
 
