@@ -37,7 +37,7 @@ def generate_suggestions(results):
                         "Similarity Score": [i[2] for i in results]})
     return df
 
-def process_text(sample_text, threshold: float = 0.45, model, spacy_model):
+def process_text(sample_text, model, spacy_model, threshold: float = 0.45):
     
     terms = load_terms()
     term_embeds = [model.encode(term) for term in terms]
