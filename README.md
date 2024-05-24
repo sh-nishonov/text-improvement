@@ -21,7 +21,9 @@ $ streamlit run app.py
 You will see the following screen with the deafult input text.
 
 ![App Screenshot](./data/screen_input.png)
+
 When you press "Suggest Phrase" button it gives you suggestion in the form of a table.
+
 ![App Screenshot](./data/screen_suggestions.png)
 ## Approach
 
