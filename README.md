@@ -69,5 +69,8 @@ def compute_similarity(model, phrases, terms, term_embeds, threshold):
 ```
 The function above encodes phrases and compares them with the "standardized" terms. With the help of ```np.argmax()``` function I retrieved the most similar term with the phrase, and if cosine similarity score of the term greater than the threshold, I added the term to the list in order to give suggestions later.
 
+## Time taken
+4-5 hours.
+
 ## Further Improvement
 First of all, it would be very useful to visualize the embeddings of both phrases and terms with the help of any dimensionality reduction algorithm like UMAP or tSNE. Then, other embedding models can be tested.
