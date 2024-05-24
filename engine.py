@@ -9,6 +9,12 @@ from utils import load_terms
 
 
 def get_phrases_from_input(input_text : str) -> list:
+    """
+    Extract phrases from the spacy document using part-of-speech tags.
+
+    :param input_text: spacy document of input text.
+    :return: A list of extracted phrases.
+    """
     phrases = []
     for token in input_text:
         if token.pos_ in {"VERB"} and token.text.lower() not in stop_words.STOP_WORDS:
@@ -19,6 +25,15 @@ def get_phrases_from_input(input_text : str) -> list:
 
 
 def compute_similarity(model, phrases, terms, term_embeds, threshold):
+    """
+    Compute similarity between embeddings and filter with a threshold
+
+    :param phrases: A list of phrases.
+    :param terms: A list of terms.
+    :parm term_embeds: A list of "standardized term"'s embeddings.
+    :parm threshold: Float value for threshold.
+    :return: A list of filtered suggestions.
+    """
     results = []
     for phrase in phrases:
         phrase_embedding = model.encode(phrase).reshape(1, -1)
